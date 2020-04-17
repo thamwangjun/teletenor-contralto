@@ -1,0 +1,3 @@
+[submodule "teletenor"]
+	path = teletenor
+	url = git@github.com:tabby-jun/teletenor.git

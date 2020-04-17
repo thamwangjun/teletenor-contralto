@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  teletenor-serverless
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  TeletenorLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: teletenor/
+      Handler: js/main/lambda-main.handler
+      Runtime: nodejs12.x
+      MemorySize: 128
+      Events:
+        TelegramUpdate:
+          Type: Api
+          Properties:
+            Path: /update
+            Method: post
