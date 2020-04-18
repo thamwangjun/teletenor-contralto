@@ -1,7 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  teletenor-serverless
+  teletenor-contralto
+
+Parameters:
+  TeletenorApiStageSecret:
+    Type: String
 
 Globals:
   Function:
@@ -19,5 +23,19 @@ Resources:
         TelegramUpdate:
           Type: Api
           Properties:
-            Path: /update
             Method: post
+            Path: /update
+            RestApiId: !Ref TeletenorUpdateWebhookApi
+  TeletenorUpdateWebhookApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Sub "${TeletenorApiStageSecret}Prod"
+
+
+Outputs:
+  TeletenorUpdateWebhookApiURL:
+    Description: "API endpoint URL for Prod environment"
+    Value: !Sub "https://${TeletenorUpdateWebhookApi}.execute-api.${AWS::Region}.amazonaws.com/${TeletenorApiStageSecret}Prod/update"
+  TeletenorLambdaFunction:
+    Description: "TeletenorLambdaFunction ARN"
+    Value: !GetAtt TeletenorLambdaFunction.Arn
