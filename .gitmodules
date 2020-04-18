@@ -1,3 +1,6 @@
 [submodule "teletenor"]
 	path = teletenor
 	url = git@github.com:tabby-jun/teletenor.git
+[submodule "contralto-tool"]
+	path = contralto-tool
+	url = git@github.com:tabby-jun/contralto-tool.git
