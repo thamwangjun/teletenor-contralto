@@ -9,7 +9,7 @@ Parameters:
 
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 2
 
 Resources:
   TeletenorLambdaFunction:
